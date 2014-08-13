@@ -1,6 +1,41 @@
-<div id='container'>
+<div id='container' ng-controller="ShortenController">
 <!-- Your code here -->
-
+  <form name='shortlyForm' ng-submit="addLink()" novalidate>
+    <input name="longLink" type="url" ng-model="link.url" placeholder="Enter your link here" required>
+    <button type="submit" ng-disabled="shortlyForm.$invalid">go</button>
+  </form>
+  <!-- if blank and dirty -->
+  <div ng-if='shortlyForm.longLink.$error.required && shortlyForm.$dirty'>
+    Please enter a URL!
+  </div>
+  <!-- if not valid and dirty -->
+  <div ng-show='shortlyForm.longLink.$error.url && shortlyForm.$dirty'>
+    Please enter a valid URL!
+  </div>
 </div>
 
+<!-- 
+<div class="creator">
+  <form name='shortlyForm' ng-submit="addLink()" novalidate>
+    <input name='link' type="url"
+      ng-model="link.url"
+      placeholder="Enter your url here" required
+      ng-class="{'error': shortleyForm.$invalid && shortlyForm.$dirty}"/>
 
+    <button type="submit" value="Shorten" ng-disabled='shortlyForm.$invalid'>
+      add
+    </button>
+  </form>
+  // BLANK AND DIRTY, THEN URL REQUIRED
+  <div ng-if='shortlyForm.link.$error.required && shortlyForm.$dirty' class="message">
+    <h2>Url required</h2>
+  </div>
+  // NOT BLANK, AND NOT URL, THEN NEED VALID URL!
+  <div ng-show='shortlyForm.link.$error.url && shortlyForm.$dirty' class="message">
+    <h2>Not a valid url</h2>
+  </div>
+</div>
+ -->
+
+
+<div 

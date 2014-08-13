@@ -1,3 +1,47 @@
-<div id='container'>
+<div id='container' ng-controller="LinksController">
   <!-- Your html here -->
+  <input type="text" ng-model="searchString" placeholder="filter">
+
+  <div ng-repeat="link in data.links | filter:searchString | orderBy:'-visits'">
+    {{ link.title }}
+    {{ link.url }}
+    <a href="http://localhost:8000/api/links/{{ link.code }}">http://localhost:8000/api/links/{{ link.code }}</a>
+    Visits: {{ link.visits }}
+    
+  </div>
+
+  <!-- need a big container that holds several things:
+      ++ name of webpage
+      ++ original URL of webpage
+      ++ short version of webpage
+      ++ number of visits -->
+
 </div>
+
+
+
+<!-- <input type='text' ng-model='search' placeholder='filter' />
+<div class="links">
+
+directive
+<shorten-link source="link" ng-repeat="link in data.links | filter:search | orderBy:'created_at'"></shorten-link>
+omit below if using directive
+
+
+  <div class="link"
+         ng-repeat="link in data.links | filter:search | orderBy:'created_at'">
+    <img src="assets/redirect_icon.png">
+    <div class="info">
+      <div class="visits">
+        <span class="count">{{ links.visits }}</span>Visits
+      </div>
+      <div class="title">{{ link.title }}</div>
+      <div class="original">{{ link.url }}</div>
+
+      <a href="http://localhost:8000/api/links/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</a>a>
+    </div>
+  </div>
+</div>
+
+
+ -->

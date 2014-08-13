@@ -1,7 +1,61 @@
 angular.module('shortly.services', [])
 
+
+
+/*
+.controller('MainController', function($scope, $location) {
+  $scope.isActive = function(route) {
+    return route === $location.path();
+  }
+  console.log('here');
+})
+*/
+
 .factory('Links', function ($http) {
   // Your code here
+  var getAll = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/links',
+    })
+    .then(function(result) {
+      return result.data;
+    });
+  };
+
+  var addLink = function(longLink) {
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: longLink
+    });
+  };
+    // return $http({
+    //   method: 'POST',
+    //   url: '/api/links',
+    //   data: JSON.stringify({url: longLink})
+    // })
+    // .then(function(result) {
+    //   callback(result.data);
+    // });
+
+  /*
+  var addLink = function(link) {
+  return $http({
+    method: 'POST',
+    url: '/api/links',
+    data: link
+  })
+  .then(function() {
+  
+  });
+  }
+  */
+
+  return {
+    getAll: getAll,
+    addLink: addLink
+  };
 })
 .factory('Auth', function ($http, $location, $window) {
   // Don't touch this Auth service!!!

@@ -16,6 +16,17 @@ angular.module('shortly', [
       controller: 'AuthController'
     })
     // Your code here
+    .when('/links', {
+      templateUrl: 'app/links/links.html',
+      controller: 'LinksController'
+    })
+    .when('/shorten', {
+      templateUrl: 'app/shorten/shorten.html',
+      controller: 'ShortenController'
+    })
+    .otherwise({
+      redirectTo: '/links'
+    });
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
@@ -58,3 +69,35 @@ angular.module('shortly', [
     }
   });
 });
+
+
+
+
+// // directive
+// .directive('shortenLink', function() {
+//   return {
+//     restrict: 'EA', // for element & attribute
+//     templateURL: 'my-link.html',
+//     replace: true,
+//     scope: {
+//       source: '=' // '=' means object, '&' means function
+//     },
+//     link: function(scope, ele, attr) {
+//       console.log(scope.source);
+//     }
+//   };
+// });
+
+// // create new file called my-link.html
+// <div class="link">
+//     <img src="assets/redirect_icon.png">
+//     <div class="info">
+//       <div class="visits">
+//         <span class="count">{{ source.visits }}</span>Visits
+//       </div>
+//       <div class="title">{{ source.title }}</div>
+//       <div class="original">{{ source.url }}</div>
+
+//       <a href="http://localhost:8000/api/links/{{ source.code }}">{{ source.base_url }}/{{ link.code }}</a>a>
+//     </div>
+//   </div>
